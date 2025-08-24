@@ -1,0 +1,84 @@
+/* General body & card styles */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f172a;   /* Dark blue background */
+  color: #e5e7eb;        /* Light text */
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  min-height: 100vh;
+}
+
+.card {
+  background: #111827;   /* Dark card background */
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
+
+/* Form styles */
+form {
+  display: grid;
+  gap: 12px;
+}
+
+input, select, button {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #334155;  /* Dark border */
+  background: #0b1220;         /* Dark input background */
+  color: #e5e7eb;
+}
+
+/* button {
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+} */
+
+button:hover {
+  background: #4f46e5;
+}
+
+/* Grid rows for form inputs */
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+.row > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-weight: bold;
+}
+
+.badge.good { background: #34d399; color:#001016; }  /* Green for High */
+.badge.mid { background: #f59e0b; color:#001016; }   /* Amber for Medium */
+.badge.low { background: #f87171; color:#001016; }   /* Red for Low */
+
+.result { margin-top: 20px; }
+
+.footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+button {
+  cursor: pointer;
+  background: #22d3ee;
+  color: #001016;
+  font-weight: bold;
+  border: none;
+}
+

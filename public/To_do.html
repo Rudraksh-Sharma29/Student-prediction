@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study To-Do List with Time Slots</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0d1117, #1a1a2e);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('https://images.unsplash.com/photo-1596495577886-d920f1b8a70a?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .todo-container {
+      position: relative;
+      z-index: 1;
+      background: rgba(31,31,46,0.95);
+      padding: 50px 60px;
+      border-radius: 25px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+      width: 500px;
+      max-width: 90%;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .todo-container:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.5em;
+      color: #00bfff;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px #00bfff;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 25px;
+    }
+
+    .input-row {
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+    input, input[type="time"] {
+      flex: 1;
+      padding: 15px;
+      border-radius: 20px;
+      border: 2px solid #00bfff;
+      font-size: 1.1em;
+      background: #12131a;
+      color: #fff;
+      outline: none;
+      transition: 0.3s;
+      margin-right: 10px;
+    }
+
+    input:focus, input[type="time"]:focus {
+      border-color: #009acd;
+      box-shadow: 0 0 15px #00bfff;
+    }
+
+    input::placeholder {
+      color: #aaa;
+      font-size: 1em;
+    }
+
+    button {
+      padding: 15px 25px;
+      border-radius: 20px;
+      border: none;
+      background: #00bfff;
+      color: #000;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 5px;
+    }
+
+    button:hover {
+      background: #009acd;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00bfff;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-height: 350px;
+      overflow-y: auto;
+    }
+
+    li {
+      background: #12131a;
+      margin-bottom: 15px;
+      padding: 18px 15px;
+      border-radius: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.1em;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeIn 0.5s forwards;
+      transition: 0.3s;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    li:hover {
+      background: #1a1a2e;
+      transform: scale(1.03);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    }
+
+    li.done {
+      text-decoration: line-through;
+      color: #888;
+      background: #002b4f;
+    }
+
+    .task-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+    }
+
+    .time-slot {
+      font-size: 0.9em;
+      color: #00bfff;
+      margin-right: 10px;
+    }
+
+    .delete-btn {
+      color: #ff4d4d;
+      font-size: 1.3em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .delete-btn:hover {
+      transform: scale(1.3);
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .quote {
+      margin-top: 25px;
+      font-size: 1em;
+      text-align: center;
+      color: #00bfff;
+      font-style: italic;
+      text-shadow: 0 0 5px #00bfff;
+    }
+
+    ul::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ul::-webkit-scrollbar-thumb {
+      background: #00bfff;
+      border-radius: 10px;
+    }
+
+    ul::-webkit-scrollbar-track {
+      background: #12131a;
+    }
+  </style>
+</head>
+<body>
+  <div class="todo-container">
+    <h2>📝 To-Do List</h2>
+    <div class="input-group">
+      <div class="input-row">
+        <input type="text" id="taskInput" placeholder="Add new task...">
+        <input type="time" id="timeInput" value="08:00">
+      </div>
+      <button onclick="addTask()">Add Task</button>
+    </div>
+    <ul id="taskList"></ul>
+    <div class="quote" id="quote">
+      "📚 Stay focused, keep learning, and crush your goals today!"
+    </div>
+  </div>
+
+  <script>
+    const taskInput = document.getElementById("taskInput");
+    const timeInput = document.getElementById("timeInput");
+    const taskList = document.getElementById("taskList");
+    const quotes = [
+      "💪 You can do this! Keep going!",
+      "🔥 Every small step counts. Keep pushing!",
+      "📖 Stay focused and keep learning!",
+      "🌟 Believe in yourself, you've got this!"
+    ];
+
+    function addTask() {
+      const taskText = taskInput.value.trim();
+      const timeText = timeInput.value;
+
+      if (taskText === "") {
+        alert("💪 Add a task and crush it!");
+        return;
+      }
+
+      const lowerText = taskText.toLowerCase();
+      if (lowerText.includes("i can't") || lowerText.includes("i give up")) {
+        alert(quotes[Math.floor(Math.random() * quotes.length)]);
+        taskInput.value = "";
+        return;
+      }
+
+      const li = document.createElement("li");
+      li.onclick = () => li.classList.toggle("done");
+
+      const taskRow = document.createElement("div");
+      taskRow.className = "task-row";
+
+      const taskDesc = document.createElement("span");
+      taskDesc.textContent = taskText;
+
+      const timeSpan = document.createElement("span");
+      timeSpan.textContent = timeText;
+      timeSpan.className = "time-slot";
+
+      const deleteBtn = document.createElement("span");
+      deleteBtn.textContent = "✖";
+      deleteBtn.className = "delete-btn";
+      deleteBtn.onclick = (e) => {
+        e.stopPropagation();
+        li.remove();
+      };
+
+      taskRow.appendChild(taskDesc);
+      taskRow.appendChild(timeSpan);
+      taskRow.appendChild(deleteBtn);
+      li.appendChild(taskRow);
+
+      taskList.appendChild(li);
+
+      taskInput.value = "";
+      timeInput.value = "08:00";
+    }
+
+    // ---------------- ENTER KEY FUNCTIONALITY ----------------
+    taskInput.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        addTask();
+      }
+    });
+
+    timeInput.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        addTask();
+      }
+    });
+  </script>
+</body>
+</html>

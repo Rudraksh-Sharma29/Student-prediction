@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Clueless</title>
+
+  <!-- FontAwesome for social icons -->
+  <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f172a;   /* Dark blue background */
+      color: #e5e7eb;        /* Light text */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: #3b82f6; /* Bright blue */
+      animation: slideIn 1s ease forwards;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #9ca3af; /* Soft gray */
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    .team {
+      flex: 1;
+      width: 100%;
+      max-width: 500px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 10px;
+      scroll-behavior: smooth;
+    }
+
+    .member-card {
+      background: #1e293b; /* Dark gray-blue */
+      padding: 16px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s ease, background 0.3s ease;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .member-card:hover {
+      transform: translateY(-4px);
+      background: #2563eb33; /* Light blue tint */
+    }
+
+    .member-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .member-card p {
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      color: #9ca3af;
+    }
+
+    .social-links a {
+        text-decoration: none;
+      color: #3b82f6;
+      font-size: 1.2rem;
+      margin: 0 6px;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #ffffff;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      0% { opacity: 0; transform: translateX(-40px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Team Clueless</h1>
+    <p>We are a passionate team of 5 members working together 🚀</p>
+  </header>
+
+  <section class="team">
+    <div class="member-card">
+      <h3>Yash Gupta</h3>
+      <p>Frontend and Backend</p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/yash-gupta-03867825b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">LinkedIn<i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/yashgupta1209">Github<i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/yashh_0512?igsh=OW92aWxtbTZ6Yzdp">Instagram<i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    
+    <div class="member-card">
+      <h3>Rudraksh Sharma</h3>
+      <p>Frontend and Backend</p>
+      <div class="social-links">
+        <a href="">LinkedIn<i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Rudraksh-Sharma29">Github<i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/rudy.sharma_29?igsh=MWg0dzd0ZWYyZXFibg==">Instagram<i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+    
+
+    <div class="member-card">
+      <h3>Aarya Patil</h3>
+      <p>Frontend</p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/aarya-patil-411241331?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">LinkedIn<i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/aaryapatil7">Github<i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/aarya.patil7?igsh=YmJkMW1rczVrYmht">Instagram<i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <div class="member-card">
+      <h3>Vrinda Vijay</h3>
+      <p>Frontend and Backend</p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/vrinda-vijay-45b23431a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">LinkedIn<i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/vrindavijay">Github<i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/vrinda_vijay5/">Instagram<i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <div class="member-card">
+      <h3>Amogh Pransshu</h3>
+      <p>Frontend</p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/amogh-pransshu-707581342?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">LinkedIn<i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/AmoghPransshu">Github<i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/amogh.pransshu50?igsh=MXAzMDg4OGVyb3QxYg==">Instagram<i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Team Clueless. All rights reserved.</p>
+  </footer>
+</body>
+</html>

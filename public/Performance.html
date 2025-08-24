@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Track Your Growth 📈</title>
+  <link rel="stylesheet" href="historystyles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="card">
+    <h2>Track Your Growth 📈</h2>
+
+    <div class="split">
+      <!-- Left: Inputs -->
+      <div class="left">
+        <form id="predict-form" class="form-grid">
+          <div class="field">
+            <label for="studentId">Student ID</label>
+            <input id="studentId" type="text" placeholder="e.g., s123" required>
+          </div>
+
+          <div class="field">
+            <label for="date">Date</label>
+            <input id="date" type="date" required>
+          </div>
+
+          <div class="field">
+            <label for="hours">Hours Studied / Day</label>
+            <input id="hours" type="number" min="0" max="16" step="0.5" required>
+          </div>
+
+          <div class="field">
+            <label for="attendance">Attendance (%)</label>
+            <input id="attendance" type="number" min="0" max="100" step="1" required>
+          </div>
+
+          <div class="field">
+            <label for="sleep">Sleep (hours/night)</label>
+            <input id="sleep" type="number" min="0" max="14" step="0.5" required>
+          </div>
+
+          <div class="field">
+            <label for="assign">Assignments Completed (%)</label>
+            <input id="assign" type="number" min="0" max="100" step="1" required>
+          </div>
+
+          <div class="field">
+            <label for="extra">Extracurricular</label>
+            <select id="extra">
+              <option value="none">None</option>
+              <option value="light" selected>Light</option>
+              <option value="moderate">Moderate</option>
+              <option value="heavy">Heavy</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="mobile">Mobile Used (mins)</label>
+            <input id="mobile" type="number" min="0" max="600" step="5" required>
+          </div>
+
+          <div class="actions">
+            <button type="submit">Predict & Save</button>
+            <button type="button" id="resetData" class="btn-secondary">Reset</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right: Daily chart + compact month controls -->
+      <div class="right">
+        <div class="panel">
+          <h3>Daily Performance</h3>
+          <div class="canvas-wrap small">
+            <canvas id="dayChart" aria-label="Day wise score chart" role="img"></canvas>
+          </div>
+          <p class="score-note">Score shown is for the selected date.</p>
+        </div>
+
+        <div class="panel">
+          <div class="months-header compact">
+            <h3>Check Monthly Scores</h3>
+            <div class="selectors">
+              <select id="yearSelect" title="Year"></select>
+              <select id="monthSelect" title="Month">
+                <option value="">Select month…</option>
+              </select>
+            </div>
+          </div>
+          <p class="score-note">Pick a year & month to view the bar chart below.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Full-width big monthly chart below everything -->
+    <div id="monthlyPanel" class="panel fullwidth hidden">
+      <h3 id="monthlyTitle">Monthly Scores</h3>
+      <div id="monthChartWrap" class="canvas-wrap big">
+        <canvas id="monthChart" aria-label="Month scores bar chart" role="img"></canvas>
+      </div>
+    </div>
+
+    <div class="footer">
+      Prepared by <strong>Team Clueless</strong>
+    </div>
+  </div>
+
+  <script src="historyscript.js"></script>
+</body>
+</html>

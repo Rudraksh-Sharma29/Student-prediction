@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fancy AI Chatbot</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #0d1117;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+  }
+
+  .chatbot-container {
+    background: #1a1c29;
+    width: 400px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h2 {
+    text-align: center;
+    color: #00bfff;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+  }
+
+  #chatWindow {
+    background: #12131a;
+    border: 2px solid #00bfff;
+    border-radius: 15px;
+    height: 320px;
+    padding: 15px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    scroll-behavior: smooth;
+  }
+
+  .message {
+    margin: 8px 0;
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 80%;
+    animation: fadeIn 0.3s;
+    white-space: pre-line; /* allow line breaks */
+  }
+
+  .user {
+    background: #00bfff;
+    color: black;
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+  }
+
+  .bot {
+    background: #00ffea;
+    color: black;
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .input-group {
+    display: flex;
+  }
+
+  #chatInput {
+    flex: 1;
+    padding: 10px;
+    border-radius: 15px 0 0 15px;
+    border: none;
+    outline: none;
+    background: #0d1117;
+    color: #fff;
+    border: 2px solid #00bfff;
+  }
+
+  #chatInput::placeholder {
+    color: #888;
+  }
+
+  #sendBtn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 0 15px 15px 0;
+    background: #00bfff;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  #sendBtn:hover {
+    background: #009acd;
+  }
+</style>
+</head>
+<body>
+
+<div class="chatbot-container">
+  <h2>AI Mentor 🤖</h2>
+  <div id="chatWindow"></div>
+  <div class="input-group">
+    <input type="text" id="chatInput" placeholder="Ask me anything...">
+    <button id="sendBtn" onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+const chatWindow = document.getElementById("chatWindow");
+
+function appendMessage(sender, text) {
+  const div = document.createElement("div");
+  div.classList.add("message");
+  div.classList.add(sender);
+  div.textContent = text;
+  chatWindow.appendChild(div);
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+}
+
+function sendMessage() {
+  const input = document.getElementById("chatInput");
+  const msg = input.value.trim();
+  if(!msg) return;
+
+  appendMessage("user", msg);
+
+  let response = "Hmm... can you ask that differently? 🤔";
+  const lower = msg.toLowerCase();
+
+  // Greetings
+  if(lower.includes("hello") || lower.includes("hi")) response = "Hello! 👋 How’s your study going?";
+
+
+  // Risk & tasks
+  else if(lower.includes("risk") || lower.includes("low score")) 
+    response = "⚠ Low Score Warning! Don’t panic.\n\n👉 Step 1: Identify weak subjects.\n👉 Step 2: Revise important chapters.\n👉 Step 3: Practice MCQs/PYQs.\n\n📝 TO-DO LIST: \n1) Revise 2 DBMS chapters\n2) Solve 10 DSA problems\n3) Attempt 1 mock test\n\nConsistency fixes scores! 🚀";
+
+  else if(lower.includes("it is too much to do") || lower.includes("too much")) 
+    response = "😥 Feels overwhelming? Break it down!\n\n📝 TO-DO LIST (Smaller Tasks):\n1) Revise 1 DBMS topic (not whole chapter)\n2) Solve just 2-3 DSA problems\n3) Take a 15-min revision quiz\n\n💡 Tiny steps daily → Big results later!";
+
+  else if(lower.includes("todo") || lower.includes("task")) response = "✅ Suggested Task: Revise 2 DBMS chapters today + solve 5 Math problems.";
+  else if(lower.includes("thanks")) response = "You’re welcome! Keep pushing 🚀";
+
+  // Study methods
+  else if(lower.includes("how should i improve") || lower.includes("improve")) 
+    response = "🌟 Improvement Strategy:\n1) 📅 Make a strict timetable (with breaks)\n2) 🎯 Focus first on weak areas\n3) 🔄 Use spaced repetition (revise after 1 day, 1 week, 1 month)\n4) 📝 Take short quizzes to test progress\n5) 👥 Discuss with peers or teach concepts (teaching = best learning)\n6) ☕ Stay consistent, not perfect!";
+
+  else if(lower.includes("how to study") || lower.includes("study")) 
+    response = "📚 Study tips: 1) Use active recall and notes 2) Break study sessions into 25-30 min chunks 3) Solve practice problems 4) Revise regularly and avoid cramming.";
+
+  // Study plan & priority
+  else if(lower.includes("productivity") || lower.includes("productive")) 
+    response = "Here are some productivity boosters for you 🚀:Pomodoro Technique – 25 minutes focused study + 5 min break. 2-Minute Rule – if a task takes less than 2 minutes, do it immediately.To-Do List Integration – break tasks into small, actionable items (check your To-Do List!).Digital Minimalism – keep phone notifications off during study hours.Peak Hours Study – identify your most energetic time of the day and schedule tough topics then.Remember: Productivity isn’t about doing more, it’s about doing what matters most consistently ✨.";
+  else if(lower.includes("study plan") || lower.includes("timetable")) 
+    response = "📅 Study Plan: Morning → Concept learning, Afternoon → Problem solving, Evening → Revision + Mock tests. Stick to fixed slots for consistency!";
+  else if(lower.includes("subject priority")) 
+    response = "🎯 Subject Priority: 1) Core subjects (DSA, DBMS, OS) 2) Applied subjects (Networks, Software Engg) 3) Electives. Focus more on scoring + career-relevant ones.";
+
+  // Topic priority by subject
+  else if(lower.includes("topic priority") && lower.includes("dsa")) 
+    response = "📊 DSA Topic Priority :\n1) Arrays + Strings (basics for coding rounds)\n2) Linked Lists (interview favorite)\n3) Stacks & Queues (common apps)\n4) Trees (BST, Traversals, Heap)\n5) Graphs (BFS, DFS, Shortest Path)\n6) Dynamic Programming (must for advanced roles)\n👉 Solve problems on each step before moving on.";
+  else if(lower.includes("topic priority") && lower.includes("dbms")) 
+    response = "💾 DBMS Topic Priority: ER Model → Normalization → SQL Queries → Joins → Transactions → Indexing.";
+  else if(lower.includes("topic priority") && lower.includes("os")) 
+    response = "⚙ OS Topic Priority: Process Scheduling → Deadlocks → Memory Management → File Systems.";
+  else if(lower.includes("topic priority")) 
+    response = "🔑 Topic Priority: Start with high-weightage topics + your weak areas, then polish the rest.";
+
+  // CAT & GATE separate
+  else if(lower.includes("cat")) 
+    response = "📖 CAT Prep:\n1) RC + Vocabulary → 1 hr daily reading\n2) Quant → Arithmetic & Algebra are key\n3) LR/DI → Practice daily puzzles & tables\n4) Mock tests weekly → analyze mistakes.";
+  else if(lower.includes("gate")) 
+    response = "⚡ GATE Prep:\n1) Core subjects → DSA, OS, DBMS, CN, TOC, COA\n2) Revise with standard textbooks (Galvin, Navathe, Kurose, etc.)\n3) Solve all PYQs at least twice\n4) Give subject-wise mock tests → then full mocks.";
+
+  // Internships & Interviews
+  else if(lower.includes("internship")) 
+    response = "💼 Internship Tips:\n- Build 2–3 strong projects (web/app/ML)\n- Practice DSA daily\n- Make resume ATS-friendly\n- Apply early on LinkedIn, Internshala, AngelList.";
+
+   // Subjects
+  else if(lower.includes("math")) response = "📘 For Math: focus on Algebra, Calculus, and daily problem practice.";
+  else if(lower.includes("dbms")) response = "💾 DBMS tip: Revise Joins, Normalization, and Transactions.";
+  else if(lower.includes("os")) response = "⚙ For OS: understand Deadlocks, Scheduling, and Memory Management.";
+  else if(lower.includes("dsa")) response = "📊 DSA prep: Arrays, Linked Lists, Trees, and Dynamic Programming!";
+    else if(lower.includes("interview")) 
+    response = "🎤 Interview Prep :\n\n🧑‍💻 Technical Round:\n- Revise DSA basics (sorting, recursion, linked lists, trees, DP)\n- DBMS: Joins, Transactions, Normalization\n- OS: Deadlocks, Scheduling\n- CN: TCP/IP, Routing basics\n\n📝 Coding Round:\n- Solve LeetCode/Codeforces problems\n- Time + Space analysis of solutions\n\n🙋 HR Round:\n- Prepare intro: 'Tell me about yourself'\n- Common Qs: Strengths, Weaknesses, Why this company?\n- STAR method for situation-based Qs\n\n💡 Bonus: Mock interviews + confidence practice!";
+
+  // College exams & topper tips
+  else if(lower.includes("topper") || lower.includes("college exam")) 
+    response = "👑 Toppers’ Secret: Start early, prepare concise notes, solve previous papers, teach others, and revise 2-3 times before exam.";
+
+    else if(lower.includes("i give up") || lower.includes("i am hopeless")) 
+    response = "Hey! Listen, I know it feels tough right now, but you can do this. 💪 Every small step you take today brings you closer to your goal. Keep pushing, stay consistent, and trust yourself. Remember, even the hardest challenges are temporary, but your growth is permanent. 🚀 You've got this, I believe in you! 🌟";
+
+  setTimeout(() => appendMessage("bot", response), 500);
+  input.value = "";
+}
+
+
+// Allow Enter key to send
+document.getElementById("chatInput").addEventListener("keydown", function(e) {
+  if(e.key === "Enter") {
+    e.preventDefault();
+    sendMessage();
+  }
+});
+</script>
+
+</body>
+</html>

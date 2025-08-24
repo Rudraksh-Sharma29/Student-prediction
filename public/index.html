@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Performance Analysis</title>
+  <style>
+    /* Root colors */
+    :root {
+      --dark-blue: #0f172a;
+      --light-blue: #3c91e6;
+      --white: #ffffff;
+      --gray-light: #f0f4f8;
+    }
+
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--dark-blue);
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    header {
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: var(--light-blue);
+      letter-spacing: 1.2px;
+    }
+
+    nav a {
+      color: var(--white);
+      margin-left: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--light-blue);
+    }
+
+    .hero {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+      margin: 60px 0 40px;
+    }
+
+    .hero h2 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      color: var(--light-blue);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: #d1e6ff;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .btn-primary {
+      margin-top: 15px;
+      padding: 10px 28px;
+      font-size: 1rem;
+      color: var(--dark-blue);
+      background-color: var(--light-blue);
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background-color: #2e7ecf;
+      color: var(--white);
+    }
+
+    .features {
+      width: 100%;
+      max-width: 1200px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+
+    .feature-card {
+      background-color: #174ea6;
+      padding: 25px 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+      text-align: center;
+    }
+
+    .feature-card:hover {
+      background-color: var(--light-blue);
+      color: var(--dark-blue);
+      cursor: default;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .feature-card p {
+      font-size: 1rem;
+      line-height: 1.4;
+      color: inherit;
+    }
+
+    footer {
+      width: 100%;
+      max-width: 1200px;
+      padding: 15px 0;
+      text-align: center;
+      border-top: 1px solid #2761a8;
+      color: #a9c1f5;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      nav a {
+        margin-left: 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <h2>Track and Improve Student Performance Effortlessly</h2>
+    <p>
+      Monitor grades, attendance, and progress with insightful analytics and visualizations. Empower students and teachers to achieve academic excellence.
+    </p>
+  </section>
+
+  <section id="features" class="features">
+    <div class="feature-card">
+      <h3>Student Performance Analysis</h3>
+      <p>View your performance prediction based on your current status of marks, attendance and much more!</p>
+      <a href="Prediction.html" target="_blank" class="btn-primary">Open</a>
+    </div>
+    <div class="feature-card">
+      <h3>To-Do List</h3>
+      <p>Make a list of goals to achieve by the end of the day and make your day more productive.</p>
+      <a href="To_do.html" target="_blank" class="btn-primary">Open</a>
+    </div>
+    <div class="feature-card">
+      <h3>Performance History</h3>
+      <p>Analyze performance trends over time to identify strengths and areas for improvement.</p>
+      <a href="Performance.html" target="_blank" class="btn-primary">Open</a>
+    </div>
+    <div class="feature-card">
+      <h3>AI Chatbot</h3>
+      <p>A friendly chatbot for all your doubts at your service.</p>
+      <a href="chat.html" target="_blank" class="btn-primary">Open</a>
+    </div>
+    <div class="feature-card">
+      <h3>Performance Dashboard</h3>
+      <p>Analyse your performance through graphs.</p>
+      <a href="fall23.html" target="_blank" class="btn-primary">Open</a>
+    </div>
+    <div class="feature-card">
+      <h3>About us</h3>
+      <p>Know more about us.About Team Clueless and this project</p>
+      <a href="Team.html" target="_blank" class="btn-primary">Open</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Student Performance Analysis By Team Clueless.
+  </footer>
+</body>
+</html>
