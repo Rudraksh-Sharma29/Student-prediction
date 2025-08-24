@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Performance Prediction</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js"></script>
+
+</head>
+<body>
+  <header class="site-header">
+    <h1>🎓 Student Performance Analysis</h1>
+    <p class="subtitle">Enter the details and let the magic happen</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2 class="card-title">Provide Details</h2>
+
+      <form class="feature-form" action="#" method="post">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="studyHours">Study Hours / Day</label>
+            <input type="number" id="studyHours" name="studyHours" min="0" step="0.5" placeholder="e.g., 2.5" required>
+          </div>
+
+          <div class="form-field">
+            <label for="attendance">Attendance (%)</label>
+            <input type="number" id="attendance" name="attendance" min="0" max="100" step="1" placeholder="e.g., 92" required>
+          </div>
+
+          <div class="form-field">
+            <label for="prevGrade">Previous Grade (GPA)</label>
+            <input type="number" id="prevGrade" name="prevGrade" min="0" max="10" step="0.1" placeholder="e.g., 8.3" required>
+          </div>
+
+          <div class="form-field">
+            <label for="assignments">Assignments Completed</label>
+            <input type="number" id="assignments" name="assignments" min="0" step="1" placeholder="e.g., 12" required>
+          </div>
+
+          <div class="form-field">
+            <label for="extra">Extracurricular (hrs/week)</label>
+            <input type="number" id="extra" name="extra" min="0" step="0.5" placeholder="e.g., 3">
+          </div>
+
+          <div class="form-field">
+            <label for="sleep">Sleep (hrs/night)</label>
+            <input type="number" id="sleep" name="sleep" min="0" step="0.5" placeholder="e.g., 7.5">
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn primary">Prepare Data</button>
+          <button type="reset" class="btn">Reset</button>
+        </div>
+
+        <!-- Placeholder area if you later add JS to show output -->
+        <div class="result" aria-live="polite">
+          <p><strong>Prediction:</strong> <em>—</em></p>
+          <p class="hint"></p> 
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>© 2025 Student Performance Analysis by Clueless </small>
+  </footer>
+</body>
+</html>
